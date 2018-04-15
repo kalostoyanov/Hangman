@@ -1,14 +1,11 @@
-tries = 10
-letter = ""
-word = ""
-
-
 def generate_word():
     global word
+    global blank_word
     import random
     with open("words.txt") as words_file:
         lines = words_file.read().splitlines()
     word = random.choice(lines)
+    blank_word = "_" * len(word)
 
 
 def user_input():
@@ -30,26 +27,32 @@ def check_letter():
         temporary_index = 0
         for i in word:
             if letter == i:
-                blank_word_list[temporary_index] = letter
+                blank_word_list[temporary_index] = letter  # too much denting, it's not pythonic
             temporary_index += 1
         blank_word = "".join(blank_word_list)
-        print(f"This is your current progress: {blank_word}")
     else:
         tries -= 1
-        print(f"I'm sorry, that's wrong. You still have {tries} tries left.")
+        print(f"I'm sorry, that's wrong.")
+        if tries != 0:
+            print(f"You still have {tries} tries left.")
+        else:
+            print("This was your last try...")
+   
 
 
 generate_word()
-
-# Generated blank
-blank_word = "_" * len(word)
+tries = 10
 
 print(f"You start with {tries} tries.")
 print("The lenght of the words is {0} characters.".format(len(blank_word)))
 
-while tries != 0: # I could add a game over message
+while tries != 0:
     user_input()
     check_letter()
-    if "_" not in blank_word:
-        print("Actually... When I think about it, this is it! You won!!!")  # Note: probably could be more elegant
+    if ("_" in blank_word) and (tries != 0):
+        print(f"This is your current progress: {blank_word}")
+    elif "_" not in blank_word:
+        print(f"Congrats! You won! You guessed correctly \"{word}\".")
         break
+else:
+    print("GAME OVER!")
