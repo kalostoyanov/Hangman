@@ -44,7 +44,7 @@ generate_word()
 tries = 10
 
 print(f"You start with {tries} tries.")
-print("The lenght of the words is {0} characters.".format(len(blank_word)))
+print("The length of the words is {0} characters.".format(len(blank_word)))
 
 while tries != 0:
     user_input()
