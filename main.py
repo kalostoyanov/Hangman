@@ -47,7 +47,7 @@ blank_word = "_" * len(word)
 print(f"You start with {tries} tries.")
 print("The lenght of the words is {0} characters.".format(len(blank_word)))
 
-while tries != 0:
+while tries != 0: # I could add a game over message
     user_input()
     check_letter()
     if "_" not in blank_word:
