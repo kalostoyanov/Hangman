@@ -1,0 +1,11 @@
+elephant
+turtle
+cup
+phone
+window
+door
+oven
+television
+computer
+hat
+donkey
